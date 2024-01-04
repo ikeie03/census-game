@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const Streak = require("./models/streak.js");
 const Question = require("./models/question.js");
-const routes = require("./routes/api/questions");
+const routes = require("./routes/api");
 
 const app = express();
 
@@ -28,7 +28,7 @@ connectDB();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api/questions", routes);
+app.use("/api", routes);
 
 // open and listen on port
 const port = process.env.PORT || 3000;
