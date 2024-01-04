@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const StreakSchema = new mongoose.Schema({
-    length: {
-        type: Number,
-        required: true
-    }
+  length: {
+    type: Number,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('streak', StreakSchema)
+module.exports = mongoose.model("streak", StreakSchema);

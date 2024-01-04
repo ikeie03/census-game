@@ -1,15 +1,16 @@
-const express = require('express');
-const connectDB = require('./config/db')
+const express = require("express");
 const mongoose = require("mongoose");
-const Streak = require('./models/streak.js');
-const Question = require('./models/question.js')
+
+const connectDB = require("./config/db");
+const Streak = require("./models/streak.js");
+const Question = require("./models/question.js");
+
 const app = express();
 
 // connecting to the db
-connectDB(); 
+connectDB();
 
-
-// 
+//
 // const example = new Streak({
 //     length: 10
 // })
@@ -25,10 +26,7 @@ connectDB();
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
-})
+  console.log(`Server running on port ${port}`);
+});
 
-app.get('/', (req, res) => res.send('Hello'));
-
-// mongodb+srv://census-game-admin:<password>@census-game.pvjjmlq.mongodb.net/?retryWrites=true&w=majority
-
+app.get("/", (req, res) => res.send("Hello"));
