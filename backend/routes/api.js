@@ -11,6 +11,9 @@ const Question = require("../models/question.js");
 // @access  Public
 router.get("/test", (req, res) => res.send("q route testing!"));
 
+// @route   GET api/questions/:id
+// @desc    Get a new question from generated ObjectId
+// @access  Public
 router.get("/questions/:id", (req, res) => {
   console.log("sanity check");
   console.log(req.params.id);
@@ -27,8 +30,8 @@ router.get("/questions/:id", (req, res) => {
     );
 });
 
-// @route   GET api/questions
-// @desc    Get a new question from specified id
+// @route   GET api/questions/:number
+// @desc    Get a new question from specified id number
 // @access  Public
 router.get("/questions/:number", (req, res) => {
   console.log("sanity check");
