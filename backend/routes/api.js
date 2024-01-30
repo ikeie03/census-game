@@ -1,5 +1,8 @@
+// NOTE: it's erc
+
 const express = require("express");
 const router = express.Router();
+const { ObjectId } = require("mongodb");
 
 const Question = require("../models/question.js");
 
@@ -7,6 +10,22 @@ const Question = require("../models/question.js");
 // @desc    Tests questions route
 // @access  Public
 router.get("/test", (req, res) => res.send("q route testing!"));
+
+router.get("/questions/:id", (req, res) => {
+  console.log("sanity check");
+  console.log(req.params.id);
+  Question.findOne({ _id: new ObjectId(req.params.id) })
+    .then((question) => {
+      if (question) {
+        res.json(question);
+      } else {
+        res.status(404).json({ questionnotfound: "Question not found" });
+      }
+    })
+    .catch((err) =>
+      res.status(404).json({ questionnotfound: "Question not found" })
+    );
+});
 
 // @route   GET api/questions
 // @desc    Get a new question from specified id
