@@ -16,9 +16,6 @@ const Board: React.FC<BoardProps> = ({ question, picture_id, className }) => {
       <h2 className="w-fit text-xl bg-white py-2 px-4 border border-black drop-shadow-lg">
         {question}
       </h2>
-      {/* TODO: retrieve picture from db based on picture id */}
-      {/* <p>{picture_id}</p> */}
-      {/* </div> */}
     </div>
   );
 };
