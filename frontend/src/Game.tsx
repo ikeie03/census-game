@@ -4,14 +4,14 @@ const Game = () => {
   return (
     <div className="flex flex-row h-screen">
       <Board
-        className="w-1/2 bg-slate-500"
+        className="w-1/2"
         question="Percent of groovy people in CT"
-        picture_id="CT"
+        picture_id="us-ct"
       />
       <Board
         className="w-1/2 bg-teal-500"
-        question="Percent of funky people in AL"
-        picture_id="AL"
+        question="Percent of funky people in AK"
+        picture_id="us-ak"
       />
     </div>
   );
