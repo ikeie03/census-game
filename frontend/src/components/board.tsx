@@ -8,8 +8,12 @@ interface BoardProps {
 
 const Board: React.FC<BoardProps> = ({ question, picture_id, className }) => {
   return (
-    <div className={`${className} flex flex-col h-full items-center justify-center`}>
-      <h2 className="w-fit text-xl">{question}</h2>
+    <div
+      className={`${className} flex flex-col h-full items-center justify-center`}
+    >
+      <h2 className="w-fit text-xl bg-white py-2 px-4 border border-black drop-shadow-lg">
+        {question}
+      </h2>
       {/* TODO: retrieve picture from db based on picture id */}
       {/* <p>{picture_id}</p> */}
     </div>
