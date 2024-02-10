@@ -1,12 +1,20 @@
 import './App.css'
+import {Routes, Route, BrowserRouter} from 'react-router-dom'
+import Home from './Home.tsx'
+import Game from './Game.tsx'
 
 function App() {
 
   return (
-    <div className="bg-slate-300 md:bg-red-500">
-      <p className="text-2xl font-bold underline">test</p>
+    <div className="App">
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/game" element={<Game/>}/>
+      </Routes>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App
