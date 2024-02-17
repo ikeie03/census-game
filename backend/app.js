@@ -5,30 +5,18 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const Streak = require("./models/streak.js");
 const Question = require("./models/question.js");
-const routes = require("./routes/api");
 
 const app = express();
 
 // connecting to the db
 connectDB();
 
-// const example = new Streak({
-//   length: 10,
-// });
-// example.save();
-
-// const example_2 = new Question({
-//   text: "Population of Ohio",
-//   answer: 2,
-//   number: 1,
-// });
-// example_2.save();
-
 // setting up API routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api", routes);
+const game_one_routes = require("./routes/game");
+app.use("/game", game_one_routes); // routes for the simplest, default game
 
 // open and listen on port
 const port = process.env.PORT || 3000;

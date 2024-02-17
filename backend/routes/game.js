@@ -17,11 +17,11 @@ router.get("/questions/:number", (req, res) => {
       if (question) {
         res.json(question);
       } else {
-        res.status(404).json({ questionnotfound: "Question not found" });
+        res.status(404).json({ questionNotFound: "Question not found" });
       }
     })
     .catch((err) =>
-      res.status(404).json({ questionnotfound: "Question not found" })
+      res.status(404).json({ questionNotFound: "Question not found" })
     );
 });
 
