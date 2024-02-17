@@ -13,7 +13,7 @@ const Board: React.FC<BoardProps> = ({ question, picture_id, className }) => {
       style={{ backgroundImage: `url(src/bg_images/${picture_id}.png)` }}
     >
       <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50"></div>
-      <h2 className="w-fit text-xl bg-white py-2 px-4 border border-black drop-shadow-lg">
+      <h2 className="w-fit text-xl bg-white py-2 px-4 border border-black drop-shadow-xl">
         {question}
       </h2>
     </div>

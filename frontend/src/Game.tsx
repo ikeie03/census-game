@@ -8,7 +8,6 @@ const Game = () => {
         score={10}
         highScore={100}
         className="absolute top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2"
-        
       />
       <div className="flex flex-row h-full">
         <Board
