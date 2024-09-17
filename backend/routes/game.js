@@ -6,7 +6,7 @@ const router = express.Router();
 const Question = require("../models/question.js");
 const Streak = require("../models/streak.js");
 
-// @route   GET api/questions/:number
+// @route   GET base_game/questions/:number
 // @desc    Get a new question from specified id number
 // @access  Public
 router.get("/questions/:number", (req, res) => {
@@ -15,7 +15,7 @@ router.get("/questions/:number", (req, res) => {
   Question.findOne({ number: req.params.number })
     .then((question) => {
       if (question) {
-        res.json(question);
+        res.status(200).json(question);
       } else {
         res.status(404).json({ questionNotFound: "Question not found" });
       }
@@ -25,6 +25,9 @@ router.get("/questions/:number", (req, res) => {
     );
 });
 
+// @route   PUT base_game/streaks/:number
+// @desc    Adds data about the streak
+// @access  Public
 router.put("/streaks/:streak", (req, res) => {
   const inserted_streak = new Streak({
     length: req.params.streak,
