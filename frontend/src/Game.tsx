@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Board from "./components/board";
 import ScoreDisplay from "./components/score_display";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Game = () => {
-  const [score, setScore] = useState({
-    score: 0,
-    highScore: 0,
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [score, setScore] = useState(
+    location.state || { score: 0, highScore: 0 }
+  );
 
   const updateScore = (): void => {
     const newScore = score.score + 10;
@@ -30,6 +32,7 @@ const Game = () => {
       updateScore();
     } else {
       console.log(`Loosing Board ${boardNumber} clicked`);
+      navigate("/lost", { state: score });
     }
   };
 
