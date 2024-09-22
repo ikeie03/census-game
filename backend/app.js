@@ -11,7 +11,7 @@ const app = express();
 // connecting to the db
 connectDB();
 
-// setting up API routes
+// API routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
