@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Board from "./components/board";
-import ScoreDisplay from "./components/score_display";
+import Board from "../components/board";
+import ScoreDisplay from "../components/score_display";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SymbolState } from "./enums/SymbolState";
+import { SymbolState } from "../enums/SymbolState";
 
 const Game = () => {
   const location = useLocation();
@@ -35,9 +35,7 @@ const Game = () => {
       console.log(`Winning Board ${boardNumber} clicked`);
       updateScore();
       setCenterSymbol(SymbolState.Check);
-      setTimeout(() => {
-        setCenterSymbol(SymbolState.Default);
-      }, 2000);
+      setCenterSymbol(SymbolState.Default);
     } else {
       console.log(`Loosing Board ${boardNumber} clicked`);
       setCenterSymbol(SymbolState.Cross);

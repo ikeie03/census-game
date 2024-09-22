@@ -1,11 +1,10 @@
-import './App.css'
-import {Routes, Route, BrowserRouter} from 'react-router-dom'
-import Home from './Home'
-import Game from './Game'
-import Lost from "./Lost";
+import "./App.css";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Home from "./pages/Home";
+import Game from "./pages/Game";
+import Lost from "./pages/Lost";
 
 function App() {
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -19,4 +18,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
