@@ -18,9 +18,9 @@ const Game = () => {
   };
   const [gameState] = useState({
     question_1_id: 39, // Default number
-    question_1_picture_id: "us-ct", // Default string
+    question_1_picture_id: "us-il", // Default string
     question_2_id: 42, // Default number
-    question_2_picture_id: "us-ak", // Default string
+    question_2_picture_id: "us-ca", // Default string
     winning_question: 1, // Default winning question
   });
 
