@@ -19,19 +19,24 @@ router.put("/question", async (req, res) => {
   // https://api.census.gov/data/2022/acs/acsse?get=NAME,K201101_004E&for=state:*
   try {
     // gets the relevant statistics for all states
-    const res = await fetch(
+    const state_data = await fetch(
       `https://api.census.gov/data/2022/acs/acsse?get=NAME,${statistic_id}&for=state:*`
     );
-    const state_data_arr = await res.json();
+    const state_data_arr = await state_data.json();
     console.log(state_data_arr);
 
     const questionWithMaxId = await Question.findOne().sort({ id_number: -1 });
-    const maxIdNumber = questionWithMaxId["question_id"];
+    const maxIdNumber = questionWithMaxId ? questionWithMaxId.question_id : 0;
 
+    // the first number
     for (let i = 1; i < state_data_arr.length; i++) {
       let stateName = state_data_arr[i][0];
       let question_id = maxIdNumber + i;
-      let answer = state_data_arr[i][1] / stateNameToPopulation[stateName];
+      let stateDataValue = state_data_arr[i][1];
+      if (!stateDataValue) {
+        continue;
+      }
+      let answer = stateDataValue / stateNameToPopulation[stateName];
 
       const inserted_question = new Question({
         text: question_text,
