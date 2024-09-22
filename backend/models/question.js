@@ -13,9 +13,10 @@ const QuestionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  number: {
+  question_id: {
     type: Number,
     required: true,
+    unique: true,
   },
 });
 
