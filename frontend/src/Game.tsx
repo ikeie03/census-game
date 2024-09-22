@@ -2,12 +2,16 @@ import { useState } from "react";
 import Board from "./components/board";
 import ScoreDisplay from "./components/score_display";
 import { useLocation, useNavigate } from "react-router-dom";
+import { SymbolState } from "./enums/SymbolState";
 
 const Game = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [score, setScore] = useState(
     location.state || { score: 0, highScore: 0 }
+  );
+  const [centerSymbol, setCenterSymbol] = useState<SymbolState>(
+    SymbolState.Default
   );
 
   const updateScore = (): void => {
@@ -30,9 +34,16 @@ const Game = () => {
     if (boardNumber === gameState.winning_question) {
       console.log(`Winning Board ${boardNumber} clicked`);
       updateScore();
+      setCenterSymbol(SymbolState.Check);
+      setTimeout(() => {
+        setCenterSymbol(SymbolState.Default);
+      }, 2000);
     } else {
       console.log(`Loosing Board ${boardNumber} clicked`);
-      navigate("/lost", { state: score });
+      setCenterSymbol(SymbolState.Cross);
+      setTimeout(() => {
+        navigate("/lost", { state: score });
+      }, 2000);
     }
   };
 
@@ -42,6 +53,7 @@ const Game = () => {
         score={score.score}
         highScore={score.highScore}
         className="absolute top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2"
+        centerSymbol={centerSymbol}
       />
       <div className="flex flex-row h-full">
         <Board
