@@ -35,7 +35,9 @@ const Game = () => {
       console.log(`Winning Board ${boardNumber} clicked`);
       updateScore();
       setCenterSymbol(SymbolState.Check);
-      setCenterSymbol(SymbolState.Default);
+      setTimeout(() => {
+        setCenterSymbol(SymbolState.Default);
+      }, 2000);
     } else {
       console.log(`Loosing Board ${boardNumber} clicked`);
       setCenterSymbol(SymbolState.Cross);
