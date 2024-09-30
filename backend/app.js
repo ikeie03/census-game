@@ -8,6 +8,9 @@ const Question = require("./models/question.js");
 
 const app = express();
 
+const cors = require("cors");
+app.use(cors());
+
 // connecting to the db
 connectDB();
 
@@ -19,7 +22,7 @@ const populate_db_router = require("./routes/popdb");
 app.use("/addtodb", populate_db_router);
 
 const game_one_router = require("./routes/game");
-app.use("/base_game", game_one_router); // routes for the simplest, default game (hand-made questions about proportions)
+app.use("/base-game", game_one_router); // routes for the simplest, default game (hand-made questions about proportions)
 
 // open and listen on port
 const port = process.env.PORT || 3000;

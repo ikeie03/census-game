@@ -25,14 +25,16 @@ router.get("/questions/:number", (req, res) => {
 });
 
 // @route   GET base_game/question
-// @desc    Get a new question a random
+// @desc    Get two new questions at random
 // @access  Public
-router.get("/question", async (req, res) => {
+router.get("/two-questions", async (req, res) => {
   try {
-    const randomQuestion = await Question.aggregate([{ $sample: { size: 1 } }]);
+    const randomQuestions = await Question.aggregate([
+      { $sample: { size: 2 } },
+    ]);
 
-    if (randomQuestion.length > 0) {
-      res.status(200).json(randomQuestion[0]); // Send the first (and only) random question
+    if (randomQuestions.length == 2) {
+      res.status(200).json(randomQuestions);
     } else {
       res.status(404).json({ questionNotFound: "Question not found" });
     }

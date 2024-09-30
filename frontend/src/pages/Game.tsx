@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Board from "../components/board";
 import ScoreDisplay from "../components/score_display";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -13,6 +13,23 @@ const Game = () => {
   const [centerSymbol, setCenterSymbol] = useState<SymbolState>(
     SymbolState.Default
   );
+
+  useEffect(() => {
+    updateQuestion();
+  }, [])
+
+  const updateQuestion = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/base-game/two-questions');
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const updateScore = (): void => {
     const newScore = score.score + 10;
@@ -74,4 +91,3 @@ const Game = () => {
 };
 
 export default Game;
-// TODO: move pages to separate dir
