@@ -10,12 +10,12 @@ interface BoardProps {
 const Board: React.FC<BoardProps> = ({ question, picture_id, className, onClick }) => {
   return (
     <div
-      className={`${className} flex flex-col h-full items-center justify-center bg-center bg-cover relative`}
+      className={`${className} flex flex-col h-full items-center justify-center bg-center bg-cover relative transition-opacity duration-2000`}
       style={{ backgroundImage: `url(public/bg_images/${picture_id}.png)` }}
       onClick={onClick}
     >
       <div className="absolute inset-0 bg-black opacity-20 hover:opacity-50"></div>
-      <h2 className="w-fit text-2xl bg-white py-3 px-5 border border-black drop-shadow-xl">
+      <h2 className="w-fit text-2xl bg-white py-3 px-5 border border-black drop-shadow-xl max-w-md text-center">
         {question}
       </h2>
     </div>

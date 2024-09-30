@@ -7,7 +7,7 @@ export default {
         darkblue: "#000022",
         darkred: "#DB504A",
         offwhite: "#F2FBE0",
-        green: "#537958",
+        palegreen: "#537958",
         yellow: "#fc9d03",
       },
     },

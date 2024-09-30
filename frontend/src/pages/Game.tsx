@@ -3,7 +3,7 @@ import Board from "../components/board";
 import ScoreDisplay from "../components/score_display";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SymbolState } from "../enums/SymbolState";
-import stateNameToPNGID from "../assets/stateNameToPNGID"
+import stateNameToPNGID from "../assets/stateNameToPNGID";
 
 interface Question {
   _id: string;
@@ -38,25 +38,25 @@ const Game = () => {
   }, []);
 
   const generateNewGameState = (question1: Question, question2: Question) => {
-    const createQuestionText = (question: Question) => 
+    const createQuestionText = (question: Question) =>
       generateFullQuestionText(question.text, question.state);
-  
+
     return {
       question_1_id: question1.question_id,
       question_1_picture_id: stateNameToPNGID[question1.state],
       question_1_full_text: createQuestionText(question1),
-      
+
       question_2_id: question2.question_id,
       question_2_picture_id: stateNameToPNGID[question2.state],
       question_2_full_text: createQuestionText(question2),
-      
+
       winning_question: question1.answer >= question2.answer ? 1 : 2
     };
   };
-  
-  const generateFullQuestionText = (text: string, state: string) => `${text} ${state}`;
 
-  
+  const generateFullQuestionText = (text: string, state: string) =>
+    `${text} ${state}`;
+
   const updateQuestion = async () => {
     try {
       const response = await fetch(
@@ -67,7 +67,7 @@ const Game = () => {
       }
       const data = await response.json();
       console.log(data);
-      const newState = generateNewGameState(data[0], data[1])
+      const newState = generateNewGameState(data[0], data[1]);
       setGameState(newState);
     } catch (error) {
       console.error(error);
@@ -90,9 +90,8 @@ const Game = () => {
       setCenterSymbol(SymbolState.Check);
       setTimeout(() => {
         setCenterSymbol(SymbolState.Default);
+        updateQuestion(); // Change to a new question
       }, 2000);
-
-      updateQuestion(); // Change to a new question
     } else {
       console.log(`Loosing Board ${boardNumber} clicked`);
       setCenterSymbol(SymbolState.Cross);

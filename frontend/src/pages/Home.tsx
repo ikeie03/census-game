@@ -25,7 +25,7 @@ const Home = () => {
       </p>
       <button
         onClick={handlePlayGame}
-        className="mt-8 bg-green hover:bg-yellow text-white py-4 px-12 rounded-lg text-3xl transition"
+        className="mt-8 bg-palegreen hover:bg-yellow text-white py-4 px-12 rounded-lg text-3xl transition"
       >
         Play the game!
       </button>

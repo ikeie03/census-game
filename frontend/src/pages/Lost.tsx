@@ -20,7 +20,7 @@ const Lost = () => {
       <p className="text-xl mb-4">Better luck next time!</p>
 
       <div className="flex flex-col items-center space-y-8">
-        <div className="bg-green text-white rounded-lg p-8 shadow-md w-full">
+        <div className="bg-palegreen text-white rounded-lg p-8 shadow-md w-full">
           <p className="text-2xl">Your Score: {score}</p>
           <p className="text-2xl mt-2">Your high Score: {highScore}</p>
         </div>
@@ -34,7 +34,7 @@ const Lost = () => {
 
         <button
           onClick={handleGoHome}
-          className=" bg-white hover:bg-green text-green hover:text-white py-2 px-6 rounded-lg text-xl transition w-full"
+          className=" bg-white hover:bg-palegreen text-palegreen hover:text-white py-2 px-6 rounded-lg text-xl transition w-full"
         >
           Go back home
         </button>

@@ -67,7 +67,7 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({
 
   return (
     <div
-      className={`${className} w-fit flex flex-col items-center justify-center`}
+      className={`${className} w-fit flex flex-col items-center justify-center z-20`}
       style={{ top: "calc(50% + 30px)" }}
     >
       {centerSymbol == SymbolState.Default
