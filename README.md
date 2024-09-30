@@ -22,6 +22,12 @@ A game where users try to guess which randomly generated US census query result 
 
 **Backend:** Node.JS, MongoDB, Mongoose
 
+## Setup Intructions
+(Temporary set up until we host this separately. Message for database access)
+- Run the backend with `cd backedend`, `npm run app`
+- Run the frontend with `cd frontend`, `npm run dev`
+- Go to http://localhost:5173/
+
 ## Sources
 State flags: https://flagpedia.net/us-states/download 
 DC flag: https://flaglane.com/download/washington-dc-flag/#downloads 
