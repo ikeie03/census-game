@@ -16,11 +16,13 @@ const Game = () => {
 
   useEffect(() => {
     updateQuestion();
-  }, [])
+  }, []);
 
   const updateQuestion = async () => {
     try {
-      const response = await fetch('http://localhost:3000/base-game/two-questions');
+      const response = await fetch(
+        "http://localhost:3000/base-game/two-questions"
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -29,7 +31,7 @@ const Game = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const updateScore = (): void => {
     const newScore = score.score + 10;
@@ -80,7 +82,7 @@ const Game = () => {
           onClick={() => handleBoardClick(1)}
         />
         <Board
-          className="w-1/2 bg-teal-500"
+          className="w-1/2 bg-green-500"
           question="Percent of funky people in AK"
           picture_id={gameState.question_2_picture_id}
           onClick={() => handleBoardClick(2)}
