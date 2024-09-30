@@ -18,3 +18,6 @@ A game where users try to guess which randomly generated US census query result 
 
 **Backend:** Node.JS, MongoDB
 
+## Sources
+State flags: https://flagpedia.net/us-states/download 
+DC flag: https://flaglane.com/download/washington-dc-flag/#downloads 
