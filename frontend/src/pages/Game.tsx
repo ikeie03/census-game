@@ -3,6 +3,16 @@ import Board from "../components/board";
 import ScoreDisplay from "../components/score_display";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SymbolState } from "../enums/SymbolState";
+import stateNameToPNGID from "../assets/stateNameToPNGID"
+
+interface Question {
+  _id: string;
+  text: string;
+  state: string;
+  answer: number;
+  question_id: number;
+  __v: number;
+}
 
 const Game = () => {
   const location = useLocation();
@@ -13,11 +23,40 @@ const Game = () => {
   const [centerSymbol, setCenterSymbol] = useState<SymbolState>(
     SymbolState.Default
   );
+  const [gameState, setGameState] = useState({
+    question_1_id: 39, // Default number
+    question_1_picture_id: "us-il", // Default string
+    question_1_full_text: "Percent of groovy people in Illinois",
+    question_2_id: 42, // Default number
+    question_2_picture_id: "us-ca", // Default string
+    question_2_full_text: "Percent of funky people in California",
+    winning_question: 1, // Default winning question
+  });
 
   useEffect(() => {
     updateQuestion();
   }, [])
 
+  const generateNewGameState = (question1: Question, question2: Question) => {
+    const createQuestionText = (question: Question) => 
+      generateFullQuestionText(question.text, question.state);
+  
+    return {
+      question_1_id: question1.question_id,
+      question_1_picture_id: stateNameToPNGID[question1.state],
+      question_1_full_text: createQuestionText(question1),
+      
+      question_2_id: question2.question_id,
+      question_2_picture_id: stateNameToPNGID[question2.state],
+      question_2_full_text: createQuestionText(question2),
+      
+      winning_question: question1.answer >= question2.answer ? 1 : 2
+    };
+  };
+  
+  const generateFullQuestionText = (text: string, state: string) => `${text} ${state}`;
+
+  
   const updateQuestion = async () => {
     try {
       const response = await fetch('http://localhost:3000/base-game/two-questions');
@@ -26,6 +65,8 @@ const Game = () => {
       }
       const data = await response.json();
       console.log(data);
+      const newState = generateNewGameState(data[0], data[1])
+      setGameState(newState);
     } catch (error) {
       console.error(error);
     }
@@ -39,13 +80,6 @@ const Game = () => {
       setScore({ score: newScore, highScore: score.highScore });
     }
   };
-  const [gameState] = useState({
-    question_1_id: 39, // Default number
-    question_1_picture_id: "us-il", // Default string
-    question_2_id: 42, // Default number
-    question_2_picture_id: "us-ca", // Default string
-    winning_question: 1, // Default winning question
-  });
 
   const handleBoardClick = (boardNumber: number) => {
     if (boardNumber === gameState.winning_question) {
@@ -55,6 +89,8 @@ const Game = () => {
       setTimeout(() => {
         setCenterSymbol(SymbolState.Default);
       }, 2000);
+
+      updateQuestion(); // Change to a new question
     } else {
       console.log(`Loosing Board ${boardNumber} clicked`);
       setCenterSymbol(SymbolState.Cross);
@@ -75,13 +111,13 @@ const Game = () => {
       <div className="flex flex-row h-full">
         <Board
           className="w-1/2"
-          question="Percent of groovy people in CT"
+          question={gameState.question_1_full_text}
           picture_id={gameState.question_1_picture_id}
           onClick={() => handleBoardClick(1)}
         />
         <Board
           className="w-1/2 bg-teal-500"
-          question="Percent of funky people in AK"
+          question={gameState.question_2_full_text}
           picture_id={gameState.question_2_picture_id}
           onClick={() => handleBoardClick(2)}
         />
